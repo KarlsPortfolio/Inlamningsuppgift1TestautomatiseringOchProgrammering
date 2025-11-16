@@ -1,6 +1,6 @@
 package MorseConverter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -51,17 +51,18 @@ public class TestMorseConverter {
 
     @Test
     public void convertLettersToMorseMixedCases() {
-        String expected = ".... . .---";
+        String expected = ".... . .-.. .-.. ---";
         MorseConverter converter = new MorseConverter();
 
-        String actual = converter.universalConverter("hEj");
+        String actual = converter.universalConverter("hEllO");
 
         assertEquals(expected, actual);
     }
 
     @Test
     public void convertLettersToMorseSpecialSymbols() {
-        String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\nBokstäver och morsekod kan inte kombineras.";
+        String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\n" +
+                "Bokstäver och morsekod kan inte kombineras";
         MorseConverter converter = new MorseConverter();
 
         String actual = converter.universalConverter("!*?");
@@ -71,10 +72,10 @@ public class TestMorseConverter {
 
     @Test
     public void convertMorseToLetter() {
-        String expected = "HEJ";
+        String expected = "HELLO";
         MorseConverter converter = new MorseConverter();
 
-        String actual = converter.universalConverter(".... . .---");
+        String actual = converter.universalConverter(".... . .-.. .-.. ---");
 
         assertEquals(expected, actual);
     }
@@ -106,7 +107,7 @@ public class TestMorseConverter {
         String expected = "Felaktig inmatning: Mata in bokstäver (A-Z) eller morsekord (Exempel: .-)";
         MorseConverter converter = new MorseConverter();
 
-        Exception e = assertThrows(NullPointerException.class, () -> converter.universalConverter("Så Kan. det GÅ?"));
+        Exception e = assertThrows(NullPointerException.class, () -> converter.universalConverter("SO Can. it GÅ?S"));
         String actual = e.getMessage();
 
         assertEquals(expected, actual);
@@ -181,13 +182,14 @@ public class TestMorseConverter {
     public void convertWordsToMorseWithMorseMixedIn() {
         MorseConverter converter = new MorseConverter();
 
-        assertThrows(NullPointerException.class, () -> converter.universalConverter("ta-.ka b..len"));
+        assertThrows(NullPointerException.class, () -> converter.universalConverter("pa-.ca-,-e"));
 
     }
 
     @Test
     public void convertWithEmptySpaces() {
-        String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\nBokstäver och morsekod kan inte kombineras.";
+        String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\n" +
+                "Bokstäver och morsekod kan inte kombineras";
         MorseConverter converter = new MorseConverter();
 
         String actual = converter.universalConverter("             ");
@@ -197,7 +199,8 @@ public class TestMorseConverter {
 
     @Test
     public void convertWordsToMorseWithIncorrectLetters() {
-        String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\nBokstäver och morsekod kan inte kombineras.";
+        String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\n" +
+                "Bokstäver och morsekod kan inte kombineras";
         MorseConverter converter = new MorseConverter();
 
         String actual = converter.universalConverter("ÅÄÖ");
@@ -207,16 +210,9 @@ public class TestMorseConverter {
     }
 
     @Test
-    public void convertWordsToMorseWithIncorrectLettersMixedIn() {
-        MorseConverter converter = new MorseConverter();
-        assertThrows(NullPointerException.class, () -> converter.universalConverter("Så skär man lök"));
-
-    }
-
-
-    @Test
     public void convertConvertEmptyString() {
-        String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\nBokstäver och morsekod kan inte kombineras.";
+        String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\n" +
+                "Bokstäver och morsekod kan inte kombineras";
         MorseConverter converter = new MorseConverter();
 
         String actual = converter.universalConverter("");
@@ -227,10 +223,10 @@ public class TestMorseConverter {
 
     @Test
     public void convertMorseToWordsWithLargeSpacesBetweenInputs() {
-        String expected = "APA";
+        String expected = "DUCK";
         MorseConverter converter = new MorseConverter();
 
-        String actual = converter.universalConverter(".-        .--.            .-");
+        String actual = converter.universalConverter("-..        ..-            -.-.       -.-");
 
         assertEquals(expected, actual);
     }

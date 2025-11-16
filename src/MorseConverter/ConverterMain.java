@@ -6,12 +6,14 @@ public class ConverterMain {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Välkommen! I detta program kan du fritt konvertera mellan ord och morsekod, morsekod till ord \nGår inte att kombinera bokstäver och morsekod");
+        System.out.println("Välkommen! I detta program kan du fritt konvertera mellan engelska till morsekod, morsekod till engelska \n" +
+                "Bokstäver och morsekod kan inte kombineras");
         MorseConverter converter = new MorseConverter();
 
 
         while (true) {
-            System.out.println("\nSkriv in ett ord eller morsekod för att konvertera. Skriv esc för att avsluta programmet");
+            System.out.println("\nSkriv in ett ord/bokstav på engelska eller morsekod för att konvertera. " +
+                    "Skriv esc för att avsluta programmet");
             try {
                 String convertedMessage = converter.universalConverter(scan.nextLine());
 

@@ -28,7 +28,8 @@ public class MorseConverter {
 
 
     public String universalConverter(String input) {
-        String output = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\nBokstäver och morsekod kan inte kombineras.";
+        String output = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\n" +
+                "Bokstäver och morsekod kan inte kombineras";
         if (!input.trim().isBlank() && !input.trim().isEmpty()) {
             //Vid esc skickas null tillbaka och då avslutas programmet i main
             if (input.equalsIgnoreCase("esc")) {
