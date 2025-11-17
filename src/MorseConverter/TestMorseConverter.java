@@ -27,6 +27,26 @@ public class TestMorseConverter {
 
         assertEquals(expected, actual);
     }
+    @Test
+    public void convertMorseToA() {
+        String expected = "A";
+        MorseConverter converter = new MorseConverter();
+
+        String actual = converter.universalConverter(".-");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void convertMorseToZ() {
+        String expected = "Z";
+        MorseConverter converter = new MorseConverter();
+
+        String actual = converter.universalConverter("--..");
+
+
+        assertEquals(expected, actual);
+    }
 
     @Test
     public void convertLettersToMorse() {
@@ -60,7 +80,7 @@ public class TestMorseConverter {
     }
 
     @Test
-    public void convertLettersToMorseSpecialSymbols() {
+    public void convertSpecialSymbols() {
         String expected = "Endast bokstäver (A-Z) eller morsekod (kommatecken och punkt) accepteras\n" +
                 "Bokstäver och morsekod kan inte kombineras";
         MorseConverter converter = new MorseConverter();
@@ -71,7 +91,7 @@ public class TestMorseConverter {
     }
 
     @Test
-    public void convertMorseToLetter() {
+    public void convertMorseToWord() {
         String expected = "HELLO";
         MorseConverter converter = new MorseConverter();
 
@@ -115,14 +135,6 @@ public class TestMorseConverter {
 
 
     @Test
-    public void getExceptionConvertMorseWithIncorrectSymbols() {
-        MorseConverter converter = new MorseConverter();
-
-        assertThrows(NullPointerException.class, () -> converter.universalConverter("...? !? : @ %"));
-    }
-
-
-    @Test
     public void convertWordsToMorseWithSpacesBetweenWords() {
         String expected = ".... . .-.. .-.. --- .-- --- .-. .-.. -..";
         MorseConverter converter = new MorseConverter();
@@ -133,7 +145,7 @@ public class TestMorseConverter {
     }
 
     @Test
-    public void convertTwoWordsToMorseMixedCases() {
+    public void convertWordsToMorseMixedCases() {
         String expected = ".... . .-.. .-.. --- .-- --- .-. .-.. -..";
         MorseConverter converter = new MorseConverter();
 
@@ -155,18 +167,18 @@ public class TestMorseConverter {
     }
 
     @Test
-    public void convertGeneralWordsToMorseWithIncorrectSymbolsMixed() {
+    public void convertWordsToMorseWithIncorrectSymbolsMixed() {
         MorseConverter converter = new MorseConverter();
 
-        assertThrows(NullPointerException.class, () -> converter.universalConverter("HELLO_ W&ORLD   !H!"));
+        assertThrows(NullPointerException.class, () -> converter.universalConverter("HELLO_ W&ORLD   !H"));
 
     }
 
     @Test
-    public void convertGeneralMorseToWordsWithIncorrectSymbolsMixed() {
+    public void convertMorseToWordsWithIncorrectSymbolsMixed() {
         MorseConverter converter = new MorseConverter();
 
-        assertThrows(NullPointerException.class, () -> converter.universalConverter("..! .-? ,"));
+        assertThrows(NullPointerException.class, () -> converter.universalConverter("..! .-? , ."));
 
     }
 
@@ -182,7 +194,7 @@ public class TestMorseConverter {
     public void convertWordsToMorseWithMorseMixedIn() {
         MorseConverter converter = new MorseConverter();
 
-        assertThrows(NullPointerException.class, () -> converter.universalConverter("pa-.ca-,-e"));
+        assertThrows(NullPointerException.class, () -> converter.universalConverter("pa-.ca-.-e"));
 
     }
 
